@@ -1,6 +1,6 @@
 deployment:
  tasks:
  - export DEPLOYPATH=/home/ala/public_html/
- - npm install
+ - npm install --production
  - npm run build
- - /bin/cp -r dist/ $DEPLOYPATH
+ - /bin/cp -r dist/* $DEPLOYPATH
