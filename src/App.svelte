@@ -2,11 +2,15 @@
   import Nav from "./lib/nav.svelte";
   import Preloader from "./lib/preloader.svelte";
   import Logo from "./assets/logo@2x.png";
+
+  let des = 'cooming soon';
 </script>
 
 <svelte:head>
   <title>cooming soon</title>
   <link rel="icon" type="image/png" href={Logo} />
+   <meta name="description" content="{des}">
+   <meta name="author" content="Ala Al-sanea">
 </svelte:head>
 
 <Preloader />
