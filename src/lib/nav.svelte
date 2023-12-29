@@ -1,8 +1,11 @@
 <script>
   // @ts-nocheck
-
+  import Icon from "@iconify/svelte";
+  import { onMount } from "svelte";
   import Manu from "./menu.svelte";
 
+  let isScrolled = false;
+  let duration = 200;
   let items = [
     {
       label: "test_0",
@@ -16,84 +19,86 @@
       label: "test_3",
       link: "#",
     },
+
+      {
+      label: "test_4",
+      link: "#",
+    },
   ];
+
+  onMount(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+  function handleScroll() {
+    isScrolled = window.scrollY > 0;
+  }
+
+  //   $:console.log(isScrolled)
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <!-- svelte-ignore a11y-missing-attribute -->
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<div class="navbar bg-base-100 shadow-2xl hover:shadow-lg rounded-box">
-  <!-- start -->
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div
-        tabindex="0"
-        role="button"
-        onclick="my_modal_2.showModal()"
-        class="btn btn-ghost lg:hidden"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          /></svg
+<div
+  class=" {isScrolled
+    ? 'sticky top-3 left-0 right-0 mx-20  '
+    : 'block  mx-3 my-6 '} transform ease-out duration-200"
+>
+  <div
+    class="navbar bg-base-100 {isScrolled
+      ? 'shadow-lg hover:shadow-md transform ease-linear duration-200  rounded-box'
+      : ''}"
+  >
+    <!-- start -->
+    <div class=" navbar-start">
+      <div class="dropdown">
+        <div
+          tabindex="0"
+          role="button"
+          onclick="my_modal_2.showModal()"
+          class="btn btn-ghost lg:hidden"
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            /></svg
+          >
+        </div>
       </div>
+
+      <a
+        class="btn btn-ghost text-xl items-center justify-center lg:flex hidden"
+        >logo</a
+      >
     </div>
 
-    <a class="btn btn-ghost text-xl">logo</a>
-  </div>
-  <!-- center -->
-  <div class="navbar-center hidden lg:flex">
-    <!-- manu -->
-    <Manu {items} />
-  </div>
+    <!-- center -->
+    <div class="navbar-center hidden lg:flex">
+      <!-- manu -->
 
-  <!-- end -->
-  <div class="navbar-end">
-    <!-- <label class="cursor-pointer grid place-items-center">
-      <input
-        type="checkbox"
-        value="synthwave"
-        class="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
-      />
-      <svg
-        class="col-start-1 row-start-1 stroke-base-100 fill-base-100"
-        xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><circle cx="12" cy="12" r="5" /><path
-          d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
-        /></svg
-      >
-      <svg
-        class="col-start-2 row-start-1 stroke-base-100 fill-base-100"
-        xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg
-      >
-    </label> -->
+      <Manu {items} />
+    </div>
+
+    <!-- end -->
+    <div class="navbar-end">
+      <a class="btn btn-ghost text-xl display lg:hidden">logo</a>
+      <div class="items-center justify-center gap-2 mx-3 lg:flex hidden">
+        <Icon class="text-4xl" icon="line-md:github" />
+        <Icon class="text-4xl" icon="line-md:linkedin" />
+        <Icon class="text-4xl" icon="line-md:instagram" />
+      </div>
+    </div>
   </div>
 </div>
 
