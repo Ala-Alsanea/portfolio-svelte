@@ -1,0 +1,6 @@
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/ala/public_html/
+ - npm install
+ - npm run build
+ - /bin/cp -r dist/ $DEPLOYPATH
