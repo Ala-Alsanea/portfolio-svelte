@@ -40,8 +40,8 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <!-- svelte-ignore a11y-missing-attribute -->
-
 <!-- svelte-ignore a11y-missing-attribute -->
+
 <div
   class=" {isScrolled
     ? 'sticky top-3 left-0 right-0 mx-20  '

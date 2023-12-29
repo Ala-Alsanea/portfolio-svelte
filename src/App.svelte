@@ -1,27 +1,20 @@
 <script>
-  import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "/vite.svg";
-  import Counter from "./lib/Counter.svelte";
+
   import Nav from "./lib/nav.svelte";
+  import Preloader from "./lib/preloader.svelte";
 
-  let x = 0;
-  let y = 0;
 
-  /** @param {number} value */
-  function yPlusAValue(value) {
-    return value + y;
-  }
-
-  $: total = yPlusAValue(x);
 </script>
 
 <svelte:head>
   <title>hi</title>
 </svelte:head>
 
+<Preloader />
 <main class="">
   
-    <Nav />
+  
+  <Nav />
   
 
   <section class="m- mt- flex flex-col content-center justify-center text-center">
